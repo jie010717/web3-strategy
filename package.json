@@ -1,0 +1,20 @@
+{
+  "name": "web3-strategy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node build.mjs --dev",
+    "build": "node build.mjs",
+    "preview": "npx serve dist"
+  },
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "highlight.js": "^11.11.1",
+    "marked": "^18.0.5"
+  }
+}
