@@ -107,7 +107,7 @@ a{color:#8b7cf7;}
 </style></head>
 <body>
 <header><div class="container">
-<h1><a href="/">⚡ ${SITE.title}</a></h1>
+<h1><a href="/"><img src="/images/logo.png" alt="${SITE.title}" style="height:28px;vertical-align:middle;margin-right:8px">${SITE.title}</a></h1>
 <nav><a href="/">首页</a><a href="/posts/">全部文章</a></nav>
 </div></header>
 <main><div class="container">${content}</div></main>
