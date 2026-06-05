@@ -1,0 +1,52 @@
+name: 每日内容生成与部署
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # 每天 UTC 2:00 = 北京时间 10:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: 生成每日文章
+        run: node generate-daily.mjs
+
+      - name: 提交新文章
+        run: |
+          git config user.name "OpenClaw Bot"
+          git config user.email "bot@web3-strategy.com"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "每日更新: 新文章"
+
+      - name: 推送到 main
+        uses: ad-m/github-push-action@v0.8
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+  deploy:
+    needs: generate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: node build.mjs
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
