@@ -31,10 +31,9 @@ jobs:
           git diff --quiet && git diff --staged --quiet || git commit -m "每日更新: 新文章"
 
       - name: 推送到 main
-        uses: ad-m/github-push-action@v0.8
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push origin main
 
   deploy:
     needs: generate
