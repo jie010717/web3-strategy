@@ -63,6 +63,7 @@ function layout(title, desc, content, extra = '') {
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="${SITE.url}">
 <link rel="icon" href="/favicon.ico">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 ${extra}
 <style>
 :root{--bg:#0f1117;--card:#1a1d2e;--accent:#6c5ce7;--text:#e2e8f0;--muted:#8892b0;--border:#2d3050;}
@@ -113,7 +114,7 @@ a{color:#8b7cf7;}
 <nav><a href="/">首页</a><a href="/posts/">全部文章</a></nav>
 </div></header>
 <main><div class="container">${content}</div></main>
-<footer><div class="container"><p>${SITE.title} &copy; ${new Date().getFullYear()} — 专业 Web3 交易策略分析</p></div></footer>
+<footer><div class="container"><p>${SITE.title} &copy; ${new Date().getFullYear()} — 专业 Web3 交易策略分析</p><p style="margin-top:8px;font-size:.8rem;color:var(--muted)">👁️ 全站访问 <span id="busuanzi_value_site_pv"></span> 次 · 访客 <span id="busuanzi_value_site_uv"></span> 人 · 本页 <span id="busuanzi_value_page_pv"></span> 次</p></div></footer>
 </body></html>`;
 }
 
