@@ -1,9 +1,8 @@
 /**
  * Web3 交易策略 - 静态站点生成器
  */
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, cpSync } from 'fs';
 import { join } from 'path';
-import { execSync } from 'child_process';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
 
@@ -173,7 +172,7 @@ function build() {
   genRSS(posts); console.log('✓ feed.xml');
   
   if (existsSync(PUBLIC)) {
-    execSync(`xcopy "${PUBLIC}" "${DIST}" /E /I /Y > NUL 2>&1`, { shell: 'cmd.exe' });
+    cpSync(PUBLIC, DIST, { recursive: true });
     console.log('✓ 静态资源');
   }
   
