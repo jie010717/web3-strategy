@@ -28,6 +28,8 @@ const SITE = {
 };
 
 function parseFrontmatter(md) {
+  // Normalize line endings
+  md = md.replace(/\r\n/g, '\n');
   const match = md.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return { meta: {}, content: md };
   const meta = {};
